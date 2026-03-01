@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  vapeai-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_GEMINI_API_KEY=${NEXT_PUBLIC_GEMINI_API_KEY}
+    container_name: vapeai-web
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_GEMINI_API_KEY=${NEXT_PUBLIC_GEMINI_API_KEY}
+    # Опционально: если у вас есть Nginx, можно убрать ports и использовать сеть
+    # networks:
+    #   - webnet
+
+# networks:
+#   webnet:
+#     external: true
